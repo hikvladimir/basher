@@ -15,6 +15,14 @@ public class Messages {
     private String text;
     private String teg;
 
+    public Messages() {
+    }
+
+    public Messages(String text, String teg) {
+        this.text = text;
+        this.teg = teg;
+    }
+
     public String getText() {
         return text;
     }
