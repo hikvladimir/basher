@@ -1,7 +1,17 @@
 <html>
+<head>
+
+</head>
 <body>
 <div>
+    <form action="/logout" method="post">
+        <input  type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<div>
     <form method="post">
+        <input  type="hidden" name="_csrf" value="{{_csrf.token}}" />
         <input type="text" name="text" placeholder="Введите текст">
         <input type="text" name="teg" placeholder="Введите тег">
         <button type="submit">Добавить</button>
