@@ -1,9 +1,6 @@
 package com.example.basher.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 
@@ -15,12 +12,21 @@ public class Messages {
     private String text;
     private String teg;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
+
     public Messages() {
     }
 
-    public Messages(String text, String teg) {
+    public Messages(String text, String teg, User user) {
+        this.author = user;
         this.text = text;
         this.teg = teg;
+    }
+
+    public String getAuthorName() {
+        return author != null ? author.getUsername() : "<none>";
     }
 
     public String getText() {
@@ -29,6 +35,14 @@ public class Messages {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     public String getTeg() {

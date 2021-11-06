@@ -1,9 +1,11 @@
 package com.example.basher.controller;
 
 import com.example.basher.domain.Messages;
+import com.example.basher.domain.User;
 import com.example.basher.repos.MessagesRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +33,8 @@ public class MainController {
         return "main";
     }
     @PostMapping("/main")
-    public String add(@RequestParam String text, @RequestParam String teg, Map<String, Object> model){
-        Messages message=new Messages(text, teg);
+    public String add(@AuthenticationPrincipal User user, @RequestParam String text, @RequestParam String teg, Map<String, Object> model){
+        Messages message=new Messages(text, teg, user);
         messagesRepo.save(message);
 
         Iterable<Messages> messages = messagesRepo.findAll();
