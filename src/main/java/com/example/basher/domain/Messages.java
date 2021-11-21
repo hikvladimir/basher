@@ -5,6 +5,10 @@ import javax.persistence.*;
 @Entity
 
 public class Messages {
+    public Integer getId() {
+        return id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

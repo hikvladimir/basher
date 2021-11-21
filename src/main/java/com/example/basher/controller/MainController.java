@@ -23,6 +23,8 @@ public class MainController {
     public String greeting(
             Map<String, Object> model
     ) {
+        Iterable<Messages> messages = messagesRepo.findAll();
+        model.put("messages", messages);
         return "greeting";
     }
 
